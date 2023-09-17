@@ -1,0 +1,13 @@
+#PokeDex{
+    display: flex;
+    justify-content: center;
+    background-color: red;
+}
+
+#Pokemon-Header{
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+}

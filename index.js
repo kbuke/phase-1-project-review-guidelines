@@ -81,14 +81,52 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!isPanelOpen) {
             document.querySelector(".wrapper").classList.add("side-panel-open");
             isPanelOpen = true;
+            //Makes the area you got the image from blurred
+            pokeImg.classList.add("dragging");
           } 
-          //pokeImg.classList.add("dragging");
+          // //Makes the area you got the image from blurred
+          // pokeImg.classList.add("dragging");
+        });
+        //Stop original image from being blurred when you stop dragging it.
+        pokeImg.addEventListener("dragend", () => {
+          pokeImg.classList.remove("dragging");
         });
 
-        //When you leave the front of the card, the card will flip to the back
-        frontOfPokeCard.addEventListener("mouseout", () => {
-          pokeCardDiv.replaceChild(backOfPokeCard, frontOfPokeCard)
-        })
+        //Set up containers and make them available to receive img when dropped in them
+        let containers = document.getElementsByClassName("select-team");
+
+        const handleDragOver = (container) => {
+          container.addEventListener("dragover", (e) => {
+            e.preventDefault();
+          });
+
+          //Create empty Poke ball for when it does
+          let emptyBall = document.createElement("img")
+          emptyBall.className = "emptyBall"
+          emptyBall.src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/8a5d5bc8-94fe-46e1-ac40-03969b602a62/dg4ex7f-e5102f8a-486e-4e98-8c85-bbdb70ff23f6.png/v1/fit/w_572,h_538/pokeball_recycle_bin__full__by_blacklem00n_dg4ex7f-375w-2x.png"
+
+
+          //Allows us to drop the image into the container
+          container.addEventListener("drop", (e) => {
+            e.preventDefault();
+            console.log(frontOfPokeCard)
+            frontOfPokeCard.remove()
+            let pokeDrag = document.getElementsByClassName("dragging")[0];
+            //console.log(pokeDrag)
+            if (pokeDrag && container.children.length === 0) {
+              pokeDrag.className = "teamImage";
+              pokeDrag.classList.remove("dragging");
+              container.appendChild(pokeDrag);
+            }
+          });
+
+        }
+        Array.from(containers).forEach(handleDragOver) 
+      })
+
+      //When you leave the front of the card, the card will flip to the back
+      frontOfPokeCard.addEventListener("mouseout", () => {
+        pokeCardDiv.replaceChild(backOfPokeCard, frontOfPokeCard)
       })
     }
     kantoPokemon.append(pokeCardDiv)

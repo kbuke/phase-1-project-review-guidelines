@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let kantoPokemon = document.getElementById("Pokemon-List")
 
   //Create a variable for the drop down list
-  let typeSelector = document.getElementById("Pokemon-List")
+  let typeSelector = document.getElementById("type-dropdown")
 
   //Now fetch available data of original 151 pokemon, ALSO limit the number to 151
   fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
             pokeImg.classList.add("dragging");
           } 
           // //Makes the area you got the image from blurred
-          // pokeImg.classList.add("dragging");
         });
         //Stop original image from being blurred when you stop dragging it.
         pokeImg.addEventListener("dragend", () => {
@@ -113,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
             frontOfPokeCard.remove()
             let pokeDrag = document.getElementsByClassName("dragging")[0];
             //console.log(pokeDrag)
+            //Make sure the container can only have one image
             if (pokeDrag && container.children.length === 0) {
               pokeDrag.className = "teamImage";
               pokeDrag.classList.remove("dragging");
@@ -131,6 +131,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     kantoPokemon.append(pokeCardDiv)
   }
+  //Now control the drop down bar
+  typeSelector.addEventListener("change", () => {
+    let selectedType = typeSelector.value
+    
+    let pokemonCards = document.querySelectorAll(".pokemonCards")
+  
+    //Show Pokemon whos pokeTypes match the dropselect option 
+    pokemonCards.forEach((card) => {
+      //Ensures if "all pokemon" is selected, then all pokemon will show
+      if(selectedType == "all pokemon"){
+        card.style.display = "block"
+        //If the pokeTypes mention in classlist matches the value of dropdown it will return those cards
+      } else if (card.classList.contains(selectedType)) {
+        card.style.display = "block";
+        //Otherwise nothing
+      } else {
+        card.style.display = "none";
+      }
+    })
+  })
 })
 
 

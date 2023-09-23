@@ -71,6 +71,21 @@ document.addEventListener("DOMContentLoaded", () => {
       backOfPokeCard.addEventListener("mouseover", () => {
         pokeCardDiv.replaceChild(frontOfPokeCard, backOfPokeCard)
 
+        //Allow the Pokemon Image to be draggable
+        pokeImg.draggable = true
+
+        //When the sidepanel is closed, and you drag an image it will open
+        let isPanelOpen = false;
+
+        pokeImg.addEventListener("dragstart", () => {
+          if (!isPanelOpen) {
+            document.querySelector(".wrapper").classList.add("side-panel-open");
+            isPanelOpen = true;
+          } 
+          //pokeImg.classList.add("dragging");
+        });
+
+        //When you leave the front of the card, the card will flip to the back
         frontOfPokeCard.addEventListener("mouseout", () => {
           pokeCardDiv.replaceChild(backOfPokeCard, frontOfPokeCard)
         })

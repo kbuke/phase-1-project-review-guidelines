@@ -21,6 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let pokeName = document.createElement("h2")
     pokeName.className = "pokemonName"
     pokeName.innerText = `${pokemon.name}`.toUpperCase()
+
+    //Retreive additional Pokemon Info from the nested url in the above
+    let pokeUrl = pokemon.url 
+    fetch(pokeUrl)
+    .then(resp => resp.json())
+    .then(data => pokeStats(data))
   }
 })
 

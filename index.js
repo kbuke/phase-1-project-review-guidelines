@@ -27,6 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch(pokeUrl)
     .then(resp => resp.json())
     .then(data => pokeStats(data))
+
+    function pokeStats(pokeInfo){
+      //Get the Pokemon Types, and add them to the class of each pokemon card
+      let types = pokeInfo.types
+      let specificType = types.map(pokeType => pokeType.type.name)
+    }
   }
 })
 

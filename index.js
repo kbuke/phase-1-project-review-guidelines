@@ -32,6 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
       //Get the Pokemon Types, and add them to the class of each pokemon card
       let types = pokeInfo.types
       let specificType = types.map(pokeType => pokeType.type.name)
+
+      //If there is more than one type, add them all to the classList
+      for(let i = 0; i < specificType.length; i++){
+        pokeCardDiv.classList.add(specificType[i])
+      }
     }
   }
 })

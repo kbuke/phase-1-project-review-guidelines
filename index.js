@@ -37,6 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
         pokeCardDiv.classList.add(specificType[i])
       }
 
+      //Get the id of each specific Pokemon, base this on the Kanto Regions id number
+      let pokeId = document.createElement("b")
+      pokeId.className = "pokemonID"
+      let kantoId = pokeInfo.id
+      pokeCardDiv.id = kantoId
+      // pokeId.innerText = `KANTO REGION ID: ${pokeInfo.id}`
+
       //Create the back of the Pokemon Card
       let backOfPokeCard = document.createElement("img")
       backOfPokeCard.className = "backEnd"

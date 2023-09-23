@@ -3,20 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon TCG</title>
+    <title>Pokemon TCG</title> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
     <script type="text/javascript" defer src="index.js"></script>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="index.css" /> 
 </head>
 <body>
-    <div id="PokeDex">
-        <img src="https://fontmeme.com/permalink/230917/e17fd01b736d954247a0c2255c766ad9.png"
-        alt="Pokemon TCG Title">
-    </div>
+    <div class="wrapper side-panel-open">
+        <!--Info on the LHS of web page-->
+        <div class="main">
+            <div id="PokeDex">
+                <img src="https://fontmeme.com/permalink/230917/e17fd01b736d954247a0c2255c766ad9.png"
+                alt="Pokemon TCG Title">
+            </div>
+        
+            <div id="Pokemon-Header">
+                <h3>Who's That Pokemon?</h3>
+            </div>
 
-    <div id="Pokemon-Header">
-        <h3>Who's That Pokemon?</h3>
+            <div class = "dropdown">
+                <hr>
+                    <label for="select-type">Filter Pokemon By Type:</label>
+                    <select id="type-dropdown" name="select-type">
+                        <option value="none" selected disabled hidden>Select an Option</option>
+                        <option value="all pokemon">All Pokemon</option>
+                        <option value="fire">Fire</option>
+                        <option value="water">Water</option>
+                        <option value="grass">Grass</option>
+                        <option value="poison">Poison</option>
+                        <option value="flying">Flying</option>
+                        <option value="bug">Bug</option>
+                        <option value="normal">Normal</option>
+                        <option value="electric">Electric</option>
+                        <option value="groud">Ground</option>
+                        <option value="fairy">Fairy</option>
+                        <option value="psychic">Psychic</option>
+                        <option value="fighting">Fighting</option>
+                        <option value="rock">Rock</option>
+                        <option value="steel">Steel</option>
+                        <option value="ice">Ice</option>
+                        <option value="ghost">Ghost</option>
+                    </select>
+            </div>
+            
+            <div id = "Pokemon-List"></div>
+        </div>
+        <button class="side-panel-toggle" type="button">
+            <span class="material-icons sp-icon-open">keyboard_double_arrow_left</span>
+            <span class="material-icons sp-icon-close">keyboard_double_arrow_right</span>
+        </button>
+        <div class="side-panel">
+            Choose Your 3 Pokemon
+            <div class="select-team"></div>
+            <div class="select-team"></div>
+            <div class="select-team"></div>
+        </div>
     </div>
-
-    <div id="Pokemon-List"></div>
+    <script>
+        document.querySelector(".side-panel-toggle").addEventListener("click", () => {
+            document.querySelector(".wrapper").classList.toggle("side-panel-open")
+        })
+    </script>
 </body>
 </html>
